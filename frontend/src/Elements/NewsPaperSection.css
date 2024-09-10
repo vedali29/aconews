@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic');
+
+.headline.hl1 {
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding: 10px 0 10px 0;
+}
+
+/* Add similar classes for hl2, hl3, etc. */
+
+.citation {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  font-weight: 400;
+  display: block;
+  margin: 40px 0 40px 0;
+  font-feature-settings: "liga", "dlig";
+}
+
+.citation:before, .citation:after {
+  content: '';
+  width: 100px;
+  height: 16px;
+  display: block;
+  margin: 0 auto;
+}
+
+.citation:before {
+  border-top: 1px solid #2f2f2f;
+}
+
+.citation:after {
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.media {
+  filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+  mix-blend-mode: multiply;
+  width: 100%;
+}
+
+/* Add your media queries here */
