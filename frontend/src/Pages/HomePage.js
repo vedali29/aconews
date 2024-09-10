@@ -13,22 +13,24 @@ const HomePage = () => {
   const query = useQuery().get('query') || ''; // Read the query parameter from URL
 
   const fetchNews = useCallback(async () => {
-    try {
-      const response = await axios.get('https://your-render-backend-url/news', { // Update URL
-        params: { search: query, page: 1 },
-      });
-      setNews(response.data.articles);
-    } catch (error) {
-      console.error('Error fetching news:', error.message);
-      setError('Failed to fetch news. Please try again later.');
-    }
-  }, [query]);
+  try {
+    const response = await axios.get('https://aconews-1fnp.onrender.com/news', { // Update URL
+      params: { search: query, page: 1 },
+    });
+    setNews(response.data.articles);
+  } catch (error) {
+    console.error('Error fetching news:', error.message);
+    setError('Failed to fetch news. Please try again later.');
+  }
+}, [query]);
+
 
   useEffect(() => {
     fetchNews(); // Fetch news based on the current query parameter
   }, [fetchNews]);
 
   return (
+    
     <div className="p-4">
       {error ? <p className="text-red-500">{error}</p> : <NewsList news={news} />}
     </div>
