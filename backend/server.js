@@ -4,7 +4,10 @@ const axios = require('axios');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin:['https://aconews1.web.app/', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 
 const API_KEY = process.env.API_KEY; // Use the API key from .env
@@ -30,9 +33,10 @@ app.get('/news', async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
+    console.error('Error details:', error);
     if (error.response) {
       console.error('API response error:', error.response.data);
-      res.status(500).json({ message: 'Error fetching news', error: error.response.data });
+      res.status(error.response.status).json({ message: 'Error fetching news', error: error.response.data });
     } else if (error.request) {
       console.error('No response from API:', error.request);
       res.status(500).json({ message: 'No response from Gnews API' });
@@ -42,6 +46,7 @@ app.get('/news', async (req, res) => {
     }
   }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
